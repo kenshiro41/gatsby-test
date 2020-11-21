@@ -1,13 +1,25 @@
-import * as React from 'react'
+import React from 'react'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 
 import 'modern-normalize'
+import 'semantic-ui-css/semantic.min.css'
 import '../styles/normalize'
 
-import Header from '../components/Header'
-import LayoutRoot from '../components/LayoutRoot'
-import LayoutMain from '../components/LayoutMain'
+import Header from './Header'
+import LayoutRoot from './LayoutRoot'
+import LayoutMain from './LayoutMain'
+import Page from './Page'
+import Container from './Container'
+import Right from './Right'
+import Left from './Left'
+import styled from '@emotion/styled'
+import { dimensions } from '../styles/variables'
+
+const PutHorizon = styled.div`
+  display: inline-flex;
+  padding: 0 ${dimensions.containerPadding}rem;
+`
 
 interface StaticQueryProps {
   site: {
@@ -19,7 +31,7 @@ interface StaticQueryProps {
   }
 }
 
-const IndexLayout: React.FC = ({ children }) => (
+const Layout: React.FC = ({ children }) => (
   <StaticQuery
     query={graphql`
       query IndexLayoutQuery {
@@ -41,10 +53,18 @@ const IndexLayout: React.FC = ({ children }) => (
           ]}
         />
         <Header title={data.site.siteMetadata.title} />
-        <LayoutMain>{children}</LayoutMain>
+        <LayoutMain>
+          <Page>
+            <PutHorizon>
+              {/* <Left>left</Left> */}
+              <Container>{children}</Container>
+              <Right>right</Right>
+            </PutHorizon>
+          </Page>
+        </LayoutMain>
       </LayoutRoot>
     )}
   />
 )
 
-export default IndexLayout
+export default Layout

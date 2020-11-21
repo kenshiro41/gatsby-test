@@ -1,25 +1,18 @@
-'use strict'
+require('dotenv').config()
 
 module.exports = {
   siteMetadata: {
-    title: 'gatsby-starter-typescript-plus',
-    description: 'A starter kit for TypeScript-based Gatsby projects with sensible defaults.',
+    title: 'エンジニア備忘録',
+    description: '自分用の備忘録です!!!',
     keywords: 'gatsbyjs, gatsby, javascript, sample, something',
     siteUrl: 'https://blog.ken41.com',
     author: {
-      name: 'kenshiro sugiura',
-      url: 'https://twitter.com/my-twitter',
+      name: 'Kenshiro Sugiura',
+      url: 'https://twitter.com/kenshiro0401',
       email: 'ken41shiro@gmail.com'
     }
   },
   plugins: [
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'content',
-        path: `${__dirname}/src/content`
-      }
-    },
     {
       resolve: 'gatsby-transformer-remark',
       options: {
@@ -44,13 +37,27 @@ module.exports = {
         ]
       }
     },
-    'gatsby-transformer-json',
+    {
+      resolve: 'gatsby-plugin-graphql-codegen',
+      options: {
+        fileName: './types/graphql-types.d.ts',
+        codegenConfig: { maybeValue: 'T | undefined' }
+      }
+    },
     {
       resolve: 'gatsby-plugin-canonical-urls',
       options: {
-        siteUrl: 'https://gatsby-starter-typescript-plus.netlify.com'
+        siteUrl: 'https://ken41.netlify.com'
       }
     },
+    {
+      resolve: 'gatsby-source-contentful',
+      options: {
+        spaceId: process.env.SPACE_ID,
+        accessToken: process.env.ACCESS_TOKEN
+      }
+    },
+    'gatsby-transformer-json',
     'gatsby-plugin-emotion',
     'gatsby-plugin-typescript',
     'gatsby-plugin-sharp',

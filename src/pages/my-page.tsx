@@ -1,19 +1,14 @@
-import { Link } from 'gatsby'
 import React from 'react'
-import Container from '../components/Container'
-import Page from '../components/Page'
-import IndexLayout from '../layouts'
+import { Link } from 'gatsby'
+
+import Layout from '../layouts'
 
 const MyPage = () => {
   return (
-    <IndexLayout>
-      <Page>
-        <Container>
-          <h1>mypage</h1>
-          <Link to="/my">my</Link>
-        </Container>
-      </Page>
-    </IndexLayout>
+    <Layout>
+      <h1>mypage</h1>
+      <Link to="/my">my</Link>
+    </Layout>
   )
 }
 

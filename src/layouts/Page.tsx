@@ -9,6 +9,7 @@ const StyledPage = styled.div`
   position: relative;
   padding: ${dimensions.containerPadding}rem;
   margin-bottom: 3rem;
+  min-height: 300vh;
 `
 
 interface PageProps {
